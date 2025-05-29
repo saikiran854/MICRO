@@ -1,0 +1,40 @@
+package com.axison.cj;
+
+class Conter{
+	int count;
+	public void increment() {
+		count++;
+	}
+}
+
+public class Demo {
+
+	public static void main(String[] args) {
+		Conter c = new Conter();
+		Runnable obj1 = new Runnable() {
+			public void run() {
+				for(int i = 0; i< 1000 ; i ++ ) {
+					c.increment();
+				}
+				
+			}
+		};;
+		
+		Runnable obj2 = () -> {
+			Conter c2 = new Conter();
+			for(int i = 0; i < 1000 ; i++) {
+				c2.increment();
+			}
+		};
+		
+		Thread t1 = new Thread(obj1);
+		Thread t2 = new Thread(obj2);
+		t1.start();
+		t2.start();
+		
+		System.out.println("Increment value ::" + c.count);
+		
+
+	}
+
+}

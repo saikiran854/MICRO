@@ -1,0 +1,19 @@
+spring.application.name=apigateway
+
+eureka.client.serviceurl.defaultZone=http://localhost:8761/eureka
+
+logging.level.root=INFO
+
+#respnsible for identifying and routing
+logging.level.org.springframework.cloud.gateway.route.RouteDefinitionLocator=INFO
+logging.level.org.springframework.cloud.gateway.route.RouteDefinitionLocator=INFO
+
+## product service routes
+#unique identifier of the route configuration
+spring.cloud.gateway.routes[0].id=productservice
+# load balnce the request to the service named productservice like hostname:port
+spring.cloud.gateway.routes[0].uri=lb://productservice
+# route condition
+spring.cloud.gateway.routes[0].predicates[0]=Path=/product
+
+server.port=8181

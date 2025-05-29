@@ -1,0 +1,54 @@
+package com.axison.conroller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.axison.entities.Employee;
+import com.axison.model.EmpObject;
+import com.axison.repos.EmployeeRepo;
+
+import jakarta.validation.Valid;
+//import com.google.gson.Gson;
+
+
+@RestController
+@RequestMapping("/axisboot")
+public class EmployeeController {
+	
+	@Autowired
+	EmployeeRepo employeeRepo;
+	
+	@GetMapping("/checkStatus")
+	public String checkStatus() {
+		System.out.println("Welcome");
+		return "Welcome";
+	}
+	
+	@PostMapping("/createEmployee")
+	@ResponseBody
+	@Transactional
+	public String createEmployee(@RequestBody @Valid EmpObject emp) {
+		
+		System.out.println("Employee req::" + emp.toString() );
+		Employee employee = new Employee();
+		employee.setCompany("Microsoft");
+		employee.setSalary("4500000");
+		employee.setEid("100");
+		employee.setName("Saikiran");
+		try {
+			int x = 1/0;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("Exception::" + e);
+		}
+		employeeRepo.save(employee);
+		return "Employee created";
+	}
+
+}

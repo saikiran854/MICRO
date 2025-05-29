@@ -1,0 +1,42 @@
+package com.project.orderservice.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.project.orderservice.dto.OrderRequest;
+import com.project.orderservice.service.OrderService;
+
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+
+@RestController
+@RequestMapping("/order")
+public class OrderController {
+	
+	@Autowired
+	OrderService orderService;
+	
+	@GetMapping("/")
+	public String message() {
+		return "Hello";
+	}
+	
+	@CircuitBreaker(name = "inventory" , fallbackMethod = "placeOrderFallback")
+	@PostMapping("/placeOrder")
+	public String placeOrder(@RequestBody OrderRequest orderRequest) {
+		
+		orderService.placeOrder(orderRequest);
+		return "Order placed successfully";
+	}
+	
+	public String placeOrderFallback( OrderRequest orderRequest , RuntimeException ex) {
+		return "OOps!! Please try after some time";
+		
+	}
+
+}

@@ -1,0 +1,69 @@
+package com.project.orderservice.service;
+
+import java.util.List;
+import java.util.UUID;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.util.UriBuilder;
+
+import com.project.orderservice.config.WebclientConfig;
+import com.project.orderservice.dto.OrderItemsDTO;
+import com.project.orderservice.dto.OrderRequest;
+import com.project.orderservice.entities.Order;
+import com.project.orderservice.entities.OrderItems;
+import com.project.orderservice.repository.OrderRepository;
+
+@Service
+public class OrderService {
+	
+	@Autowired
+	OrderRepository orderRepository;
+	
+	@Autowired
+	WebClient.Builder webclientBuilder;
+	
+	public String placeOrder(OrderRequest orderRequest) {
+		
+		Order order = new Order();
+		order.setOrderNumber(UUID.randomUUID().toString());
+		List<OrderItems> orderItems = orderRequest.getOrderItemsDTOList().stream().map(orderitemdto -> mapFromDtoOrderItem(orderitemdto)).toList();;
+		order.setOrderItemsList(orderItems);
+		
+		// call the inventory servce to check whether the item is in stock or not
+		String url = "http://localhost:8082/invenory/isInStock";
+		List<String> skcodes = orderItems.stream().map(s -> s.getSkeucode()).toList();
+		
+//		Boolean result = webClient.get()
+//				.uri("http://localhost:8083/api/inventoryservice",
+//						uriBuilder -> uriBuilder.queryParam("skuCode", skcodes).build())
+//				.retrieve().bodyToMono(Boolean.class).block();
+		
+		Boolean result = webclientBuilder.build().get()
+				.uri("http://inventoryservice/inventory/isInStock", x -> x.queryParam("ske-code", skcodes).build() )
+				.retrieve()
+				.bodyToMono(Boolean.class)
+				.block();
+		if(result) {
+			System.out.println("Order placed successfully !!!");
+			orderRepository.save(order);
+			return "Order placed successfully !!!";
+			
+		}
+		return "Order failed !!!";
+//		else {
+//			System.out.println("Order could not be placed as it is out of stock!!!");
+//		}
+		
+	}
+
+	private OrderItems mapFromDtoOrderItem(OrderItemsDTO orderitemdto) {
+		OrderItems orderItems = new OrderItems();
+		orderItems.setPrice(orderitemdto.getPrice());
+		orderItems.setQty(orderitemdto.getQty());
+		orderItems.setSkeucode(orderitemdto.getSkeucode());
+		return orderItems;
+	}
+
+}
