@@ -1,0 +1,1359 @@
+ /static/vendors/bootstrap/dist/css/bulkRefundLst.css
+ /static/vendors/bootstrap/dist/css/bulkRefundPendStyle.css
+ /static/vendors/bootstrap/dist/css/bulkVoucherStyle.css
+ /static/vendors/bootstrap/dist/css/checkerHomeStyle.css
+ /static/vendors/bootstrap/dist/css/forgotPassword.css
+ /static/vendors/bootstrap/dist/css/homestyle.css
+ /static/vendors/bootstrap/dist/css/main.css
+ /static/vendors/bootstrap/dist/css/menufactory.css
+ /static/vendors/bootstrap/dist/css/redeemVoucherStyle.css
+ /static/vendors/bootstrap/dist/css/redemptionStatusStyle.css
+ /static/vendors/bootstrap/dist/css/refundBulkStyle.css
+ /static/vendors/bootstrap/dist/css/refundFilterStyle.css
+ /static/vendors/bootstrap/dist/css/refundPending.css
+ /static/vendors/bootstrap/dist/css/refundSingleStyle.css
+ /static/vendors/bootstrap/dist/css/refundStatus.css
+ /static/vendors/bootstrap/dist/css/resetpwdstyle.css
+ /static/vendors/bootstrap/dist/css/searchStyle.css
+ /static/vendors/bootstrap/dist/css/singleVoucherCreateStyle.css
+ /static/vendors/bootstrap/dist/css/singleVoucherStyle.css
+ /static/vendors/bootstrap/dist/css/smsReTriggerStyle.css
+ /static/vendors/bootstrap/dist/css/transactionListStyle.css
+ /static/vendors/bootstrap/dist/css/transactionStatus.css
+ /static/vendors/bootstrap/dist/css/v3Checkerhomestyle.css
+ /static/vendors/bootstrap/dist/css/verifyStyle.css
+ /static/vendors/bootstrap/dist/css/voucherStatusStyle.css
+
+ /static/vendors/bootstrap/dist/fonts/lato.css
+
+ /static/vendors/bootstrap/dist/fonts/lato/Lato-Black.ttf
+ /static/vendors/bootstrap/dist/fonts/lato/Lato-BlackItalic.ttf
+ /static/vendors/bootstrap/dist/fonts/lato/Lato-Bold.ttf
+ /static/vendors/bootstrap/dist/fonts/lato/Lato-BoldItalic.ttf
+ /static/vendors/bootstrap/dist/fonts/lato/Lato-Italic.ttf
+ /static/vendors/bootstrap/dist/fonts/lato/Lato-Light.ttf
+ /static/vendors/bootstrap/dist/fonts/lato/Lato-LightItalic.ttf
+ /static/vendors/bootstrap/dist/fonts/lato/Lato-Regular.ttf
+ /static/vendors/bootstrap/dist/fonts/lato/Lato-Thin.ttf
+ /static/vendors/bootstrap/dist/fonts/lato/Lato-ThinItalic.ttf
+
+ /static/vendors/bootstrap/dist/js/checkerHomeScript.js
+ /static/vendors/bootstrap/dist/js/main.js
+ /static/vendors/bootstrap/dist/js/menufactory.js
+ /static/vendors/bootstrap/dist/js/v3checkerHomeScript.js
+ /static/vendors/bootstrap/dist/js/verify.js
+ /static/vendors/bootstrap/dist/js/voucherStatusScript.js
+
+updated:
+ /templates/BQRchargebacks/BQRsearch.html
+ /templates/chargebacks/search.html
+ /templates/checkerhome.html
+ /templates/home.html
+ /templates/layout/MenuFactory.html
+
+ /templates/mvoucher/bulkVoucherCreate.html
+ /templates/mvoucher/redeemMVoucher.html
+ /templates/mvoucher/redemptionStatus.html
+ /templates/mvoucher/SingleVoucherCreate.html
+ /templates/mvoucher/smsReTrigger.html
+ /templates/mvoucher/voucherStatus.html
+
+ /templates/public/forgotPassword.html
+ /templates/public/login.html
+ /templates/public/verify.html
+
+ /templates/Refund/Bulk_Refund_Pending.html
+ /templates/Refund/Bulk_Refunds_List.html
+ /templates/Refund/Refund_Bulk.html
+ /templates/Refund/Refund_Filter.html
+ /templates/Refund/Refund_Pending.html
+ /templates/Refund/Refund_Single.html
+ /templates/Refund/Refund_Status.html
+
+ /templates/resetPassword.html
+
+ /templates/transaction/Transaction_Status.html
+ /templates/transaction/transactionList.html
+
+ /templates/vThreeCheckerhome.html
+ 
+ LinkedList
+ Stackn
+ Queue
+ Microservices
+ Kafka
+ SQL
+ AWS
+============================================================================================================
+Abstract class and interface.
+private constructor.
+If a class is implementing multiple inheritaces and if both inheritances have same method, then how and also when interface extends another interface and both have same method...explain that scenario.
+
+
+
+Loops:
+-----
+For loop - when we know the number of times we want to iterate.
+While loop - when we dont know the number of times - until the codition is false.
+Do while - when we dont know the number of iterations and we want to execute atleast once , we use do while.
+
+break - breaks the control and moves to the next control which is out of loop or switch.
+continue - it does not break the loop, it skips the particular iteration and moves to the next iteration.
+
+ 
+ 
+ ResponseEntity complete
+	To set body, status and headers of the http responses
+	The sequence of settting is body, headers and status
+	
+ @ResponseBody
+	data that is sent as response to the client.
+	based on the content-type of the request, the data is converted accordingly
+	If we keep @ResponseBody, spring will treat the return value of the method as the response body
+	
+
+	
+	
+default-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; script-src 'self'; style-src 'self'; font-src 'self';
+
+
+"default-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; script-src 'self';  style-src 'self';  font-src 'self';"
+
+
+BindingResult
+Errors
+db connectivity through different ways like jdbc, spring jdbc(jdbc template), jpa and spring data jpa
+
+
+In java, Spring uses a data binder o convert the request data to a java object.
+
+If we have @valid for the request object, the validator checks the object.
+When there is error during the binding, the error details gets populated in the BndingResult - it has error codes, error messages, field errors
+
+The BindingResult holds the
+	DataBind errors - at the binding of the request
+	validator errors - errors during the validation process
+	
+When an error occurs, the error is registered in the BindingResult
+
+Errors - it is used to handle the errors that occur during the bean validation.
+	In this rejectValue method adds a new error to the Errors object
+
+BindingResult is designed specially to handle the java bean binding
+Errors is used to handle any type of error
+
+BindingResult is designed only to work with the @Valid annotation of the object
+
+Both the Errors and BndingResult can have the FieldErrors which represent errors associated with particular field
+
+FieldError has field , rejected value and default message
+BindingResult - getAllErrors
+Errors - getFieldErrors
+
+
+@PostConstruct - will be executed after all the bean properties are executed
+				 Used for the initialization of logic
+@Predestroy - It is executed just before the bean is is destroyed or removed from the Application Context, 
+			  used for cleanup logic like releasing the resources(at the time when application shuts down)
+
+Transaction Management
+======================
+Transaction - sequence of actions
+It is achieved by using the @Transactional annotation
+To use @Transactional annotation, we need to configure Transaction management using the @EnableTransactionManagement to the main class of springboot application.
+
+If amethod having @Transaction annotation, until the method is executd completely, the transaction is not committed
+
+
+java.util.properties
+@Secured
+@Async
+DeferredResult
+
+
+
+
+appsec poins merging
+excepion handling
+@Transactional
+DeferredResult and @Async
+DeferredResult
+	DeferredResult is used for handling the requests asynchronously when there is long running process
+	When a request is received, DeferredResult object is created.
+	Once the long running process is complere, the result is set on the DeferredResult which sends the response back to the client.
+
+
+Executor Framework:
+==================
+API for executing a asynchronous tasks of a multithreaded environment. It takes care of thread creation, management(execution, cancellation scheduling etc ), synchronization so that developers can focus on logic
+for each of the method call, a new thread is created.
+Threadpools resuse threads 	after prforming task and improve performance.
+
+use case:
+	Basic task execution without needing results.
+	Runnable to be executed asynchronously
+	Linitation is that there is no support for task results, cancellation shutdown
+	
+
+Needed because creating threads using Runnable is error prone.
+
+@Async
+	It is used for running the methods asynchronously
+	
+	taskExecutor.execute(() -> {
+            try {
+                // Simulate a long-running task
+                Thread.sleep(5000);
+                deferredResult.setResult("Task completed!");
+            } catch (InterruptedException e) {
+                deferredResult.setErrorResult("Error occurred");
+            }
+        });
+	
+	
+Spring bean is an object that is managed by spring IOC container
+IoC - Objects dont create their dependencies but created by spring`
+DI - Objects external dependency is provided rather than creating them itself.
+
+Spring beans are configurd using
+	XML configurations 
+	Annotations
+	java configuration class
+		Configuration annotation tells that the class contains bean definitions.
+	SpringBoot Auto-Configuration
+		It is based on classpath and environment as well.
+		I configures beans like Datasource and EntityManagerFactory
+At the time of startup, Spring automatically configures and registers the in the AppConfig
+By default, Spring bean is singleton which is nothing but one bean of a type in the container, it will throw nonUniqueBeanDefinitionException
+
+Spring beans are created on the basis of the type(class or interface) and not the name.
+Name is used only for the conflict resolution.
+Bean name will be same as that of the class name with small letter(camelCasing)
+
+If we have multiple beans and if we did not use @Qualifier for injecting it, it will throw a NoUniqueBeanDefinitionException as spring cannot decide which to inject
+
+
+@Autowired:
+		Uses type based resolution
+		If there are multiple, uses Qualifiers for ambiguity resolution.
+		supports required=false
+		can be used for fields, methods and constructors
+@Resource:
+		uses name based, then by type
+		No required=false
+		used for fields and setter methods
+		
+@Lazy - When there is circular dependency, there will be, it will avoid conflicts and inject the late binding into it, i.e, it will not be injected at the time of the startup, but at the time of when it is used
+		
+For the constructor and setter injection, when spring is creating a bean at the time of the application startup, it sees the constructor and the setter methods with @Autowired and injects the dependency in to the parameters of these methods.
+
+If we do not have any parameters in the constructor have @Autowired, then it is a normal default constructor and in this cases, @Autowired annotation is not needed.
+
+With RestTemplate, you can customise how to handle http requests and responses
+	Interceptors
+		Allows to intercept the http requests or response before executed by the RestTemplate
+	Message Converters
+	Proxy
+	Timeouts
+
+Connection Timeout : Time for establishing the connection for the target server
+SocketTimeout : Time for the target server takes to send respose after the connection is established.
+
+In springboot autoconfiguration, it scans the classpath and the environment
+	It checks if there are any db libraries are there(my sql, oracle etc)
+	H2 - it will configure in-memory h2 databse
+	mysql - configures the connection pool
+	Spring data jpa - configures Dataasource,EntityManagerFactory and TransactionManager
+	
+FOr the jpa connection, we need
+	datasource - url, username, password, driver(it has connection pool and can be configured	)
+	EntityManagerFactory
+	Transaction Manager
+persistence unit -used to inject persistence unit if there atre multiple databases group of entities
+	it defines datasource entity classes
+		transaction management
+persistence context(it injects entity manager) - entities managed by entity manager for a particular transaction or session
+
+PeresistenceContext uses unit name to resolve the database and perform the operations and 
+
+If there is single datasource in our application, no need of unit name, spring will detect the default datasource and inject the entity manager to it.
+
+Using of @Autowired instead of @PersistenceContext for the EntityManager for using spring applications 
+
+Different ways of querying data
+	JPQL - single @Query -> @Query("UPDATE PendingMandateReq p SET p.status=:status WHERE p.txnid=:txnid")
+		   SQL works on tables and columns whereas JPQL works on entities and its field names	
+		   It is platform independent and works with different databases as well.
+		   Here we alias for the Entity instance
+		   Named parameters are denoted by :
+				SELECT e FROM Employee e WHERE e.name = :name -> In this, name is a parameter variable
+				Similar to above instead of the parameter names, we can use positioning as well like SELECT e FROM Employee e WHERE e.name = ?1
+				Named parameters should be used compared to Positioning for the beteer readability.
+	Derived query - use meethod names
+	Criteria API
+		For the criteria api, we need entitymanager
+			CriteriaBuiler - builds the query conditions, selections , it is obtained from EntityManager
+				Represents the query itself, used to define the query structure and results
+				CriteriaBuilder is the starting point and is used to create CriteriaQuery and Predicate
+			Root - represents the entity being queried , gives access to the entity attributes
+			Predicate - Represents a codition(where)
+			TypedQuery - query created by criteria api which returns results
+						  Executes the query and returns the results
+	Native aql query - raw sql query using nativeQuery=true
+		@Query(value="select * from tbl_customer_device_binding  where imei=:imeiNum and mobile=:mobileNum and createddate > TO_DATE(:toDate)",nativeQuery =true), here TO_DATE function converts the string type value to date type value
+		
+	If we are using update or delete in the native query, we need to use @Modifying annotation, which gives int value, which is number of rows affected and also since we are updating the db, we need to use the @Transactional annotation as well
+		@Transactional
+		@Modifying
+		@Query("UPDATE User u SET u.age = :age WHERE u.id = :id")
+		int updateAge(@Param("id") Long id, @Param("age") int age);
+	Pagination and Sorting - use Pageable and Sort
+	Custom queries - @Query with dynamic parameters and complex 	queries
+
+Session for creating dynamic query
+
+Batch Processing :
+==================
+Execution of series of jobs ortasks on a large datasets.
+It is used for processing huge volumes of data, typically in an automated scheduled manner.
+Job is the entire batch process.
+
+1. First Job is created using JobBuilderFactory.
+2. Job is triggered(initiated) 
+	automatically on startup via spring.batch.job.enabled=true 
+	using scheduler 
+	Manually via JobLauncher with JobParameters (e.g., a timestamp to differentiate runs).
+3. Steps like Reading, processing and Writing will be there.
+	Steps are executed in sequential or in parallel based on configuration.
+	Step is defined using StepBuilderFactory and includes three core components: ItemReader, ItemProcessor, and ItemWriter.
+4. 
+
+
+Classpath
+Exception Handling
+Aspect Oriented Programming
+HIbernate, jpa an data jpa
+Pagination
+Spring Security
+converting list to array and array to list
+String, StringBuffer and StringBuilder	
+Actuator for monitoring
+kafka
+ActivMQ and RabbitMQ
+ActiveMQ - Message broker which implements JMS specification and suppotrs messaging models such as 
+	point to point :
+		one producer and one subcriber
+	publish/subscribe :
+		multiple subscribers on a topic
+url encoding
+
+appsec merging
+jenkins
+
+Spring Security
+	It is an authentication and access control framework
+	Autthentication - ensuring who the user is
+	Authorization - Determining whether the user has permission to use the resources 
+	
+Filter chain - uses a series a filters in order to process security related actions, executed for every api request before reaching the 
+
+DelegatingFilterProxy - A proxy to spring managed filters
+
+SecurityContext - stores authentication and security information
+
+AuthenticationManager - interface for managing authentication (to validate user credentias)
+AuthenticationProvider - verifies credentials over a datasource(customizable)
+UserDetailsService - interface for fetching user details from datasource(customizabl)
+Filter - that ptocesses the http requests and responses that reach the controller
+Filters are configured:
+	Automatically by the Spring Security
+	Manually by adding custom filters to the Security Filter chain
+
+Spring security intercepts every http reqest that passes the application but the behaviour depends o how the sucurity filter chain is configured
+Filter and FilterChain and how to configure the Spring Security
+
+Microservices:
+--------------
+All the patterns of microservices like service discovery are all implemented in spring cloud project.
+Microservices architecture - a software architectural style where applications are composed of small, independent services which communicate over 
+							 a network. 
+Here for synchronous communication - 
+		 Asynchronous communication - ActivMQ, Rabbit MQ, Kafka 
+Even driven architecture is nothing but sebding events to message brokers whenever an important event occurs
+Spring Cloud config/config server - To configure configuration properties without any restart. ocenralize configurations
+Spring cloud gateway / Zuul gateway - here based on the api endpoints, the api is routed to that particular service, here spring security will 
+									  be there and can also configure authentication.
+									  
+									  It has to register itself as eureka client.
+									  
+									  Inteface and single entry poit for for all the services
+									  It locates for services with the help of eureka server as gateway is registerd in eureka server.
+									  
+									  
+Service discovery(Eureka Server) - All the services are registered here and each of it has unique alias name, it takes care of load balancing
+								   Insteading of hardcoding the urls that our service calls to another service, we configure them in eureka server.	
+								   All our microservices are eureka clients are registered in the eureka server.
+								   Eureka server is a dashboard which shows all the registered eureka clients.
+								   Every eureka server itsekf is a eureka client, so always eureka.client.registerwitheurekafalse,
+																							eureka.client.fetchregistry=false
+							
+									If we have multiple spring clound dependency, just keep the version in the properties so all the spring cloud versions take the same version.
+			Even if the eureka client did not add any properties to register with eureka server, but still it registers if the eureka server is running in default port 8761, or else we need to add properties to register the eureka client in the eureka server.
+			
+	Microservice calls the other microservice through restTemplate or WebClient, since it is eureka client, the eureka server calls the other service in a loadbalanced way by having @Loadbalanced annotation for RestTemplate and @WebClient.
+		The url gives a hint to what service to discover in the eureka server in a load balanced way.
+		instead of localhost:8081, we use service name
+		Webclient is part pf spring web flux project. It is used for interprocess communication to communicate between 2 services.
+		 In this,  there is bodyToMono and pass return type of response, which is used to read response from webclient.
+		 To make synchronous communication
+		 
+		 
+	Suppose when a eureka client discovers a eureka server before calling another service, the cservice tores the eureka server info in cache and always don't call the eureka server in further calls to another service.
+	java -jar <applicationName.jar>
+	java -Dserver.port=8081-jar appName.jar
+	
+	Through programmatically also, we can get instance information of clients just by Autowiring @DisciveryClient and call the methods to get info
+	
+Hystrix circuit Breaker - In case of errors, it calls the fallback method automatically for certain amount of time. This improves availability.
+Sleuth & Zipkin - Here logs are generated and distributed across different services. this is useful for combining.
+
+asycnronous communication - fire and forget.
+Web client is coming from spring web flux project
+
+Here we are calling our services directly through web client but in real time in cloud environment, ip's are dynamic and pors as well.
+In reaal time, each service runs on different ports and have different ip's as well and also there will be in multiple servers for a single service
+In order to know for our order service to which inventory service do we need to call, we have service discovery.
+
+Service discovery : It is a server which stores the all the services names and their ip's.
+		Here all the services are registered by requesting at the time of startup and fetch the registry into the client.
+		So when order service wants to call inventory service, it calls the discovery service, it responds to call the inventory service in the particular ip etc, the order service calls the inventory service.
+		In the initially, if the discovery service is called(at the ime of starup b eureka cliens), it sends the service registry and it is stored in the local copy of the service9client0
+
+After creating services and creating eureka server, add the eureka clients in all the services
+The default port for the eureka server is 8761, if you want to change port, you need to configure the serviceurl for it in the application.properties file
+
+When we added eureka client in our services, we need to add properties where our eureka server is
+
+We can also check the status of our services in the eureka dashboard
+
+Since we want to run multiple instances of each service, if we keep sever.port=0, then the free port will be picked and runs our application
+
+The Eureka server depends on some client components (like ApplicationInfoManager) to function, even in a standalone setup. Disabling the client entirely breaks this dependency, leading to the UnsatisfiedDependencyException.
+
+Now in the webclient, instead of using the hostname:port, we need to use the aplication name without any port as our service is running in multiple ports.
+
+We have multiple instances of inventory service and when our order service is calling inventory service, it has to call one instance and if it is not available, then for the other. For this, we need to enable load balancing in all our client services by having the annotation @LoadBalanced to the WebClient
+	With this, the inventory service will be called one after the other.
+	
+Now, if we remove the eureka server and place the order which calls inventory service, still it will work as there is service registry in the client which happened at the time of startup.
+
+API Gateway:
+============
+Earler instead of remembering hostnames and ports for calling services, we used Eureka server and instead of hostname:port, we used application name with webclient load balancing.
+
+Now instead of remembering all application names and hardcoding, we are using API Gateway which routes to different services.
+
+API Gateway uses the eureka server to find the service
+If we are using api gateway, we need not use @Loadbalanced on webclient for load balancing.
+
+Example: In ecommerce When request comes from mobile to product service, it is then load balanced using api gateway
+		 When order service wants to call inventory service to check whether stock is vailable or not by client side load balancing with the help of eureka server.
+## product service routes
+#unique identifier of the route configuration
+spring.cloud.gateway.routes[0].id=productservice
+# load balnce the request to the service named productservice like hostname:port
+spring.cloud.gateway.routes[0].uri=lb://productservice
+# route condition
+spring.cloud.gateway.routes[0].predicates[0]=Path=/product
+
+Here for a request, it finds the route(3) and then looks up the productservice in eureka and then picks up on instance and forwards the request to http://localhost:8081/product
+
+with the help of filters, we can remove url parameter and change the path
+		 
+For each route, we define an id, which is name of service.
+							 uri, which we want to map to this service
+							 predicate is a parameter
+							 
+							 
+	
+For accessing each of the services, different urls are there which will all be remembered by the API gateway which routes to the particular service.
+For this, we need to configure the gateway rules.
+
+Along with this, API gateway also take care of
+	Roting
+	Authentication
+	Security
+	Load balancing
+	SSL termination - which will be terminated at the start when the reques reaches the API gateway and all the internal communication happens through http
+	
+	Add logging properties in api gateway in order to know what is happening when the request is made
+
+	We should also define routes in the api gateway in order identify the service and route towards it
+	
+	----
+	Since Api gateway is also a service, it registers itself as a discovery client.
+	add the logging properties
+	in order to identify the url pattern and route to services, we should define he rules in he api gateway
+	It has 
+		Route - which is the basic block
+		Predicate - defines the matching criterias
+		Filter - modify the request and response - like adding headers etc
+		lb:xxx -> lod balance the request to the discovery server 
+			If we are seeing only he plain html, it means we are seeing the server and not for static web resources
+	Since we can have multiple routes, we define it like array
+	we can also have different kinds of predicates
+	
+Securing microservices using Keycloak - Authorization server:
+authentication and authorization configurations are outsourced rather than being done physically
+
+Circuit Breaker:
+================
+We use circuit breaker to have resilient communication between services.
+Eg: If the service is down or takes too late to give response(timeout), it takes up.
+Circuit breaker is a set of states that our application will maintain.
+
+It can throw some error execute some method.
+
+When it is in open and just starts to accept the equests, the state will go into Half open.
+
+Since timeout is for asynchronous communication, so we have t change the returnype to a CompleteableFuture.
+
+In the initial,circuit breaker pattern status is closed and when this kind of situations occur...circuit breaker status is open.
+
+Instead of throwing error, we re calling the fallback method.
+
+Whenever there is a slow response or no response, we would like to retry the service call using resilience4J.
+If the retry is still not working, then the circuit breaker will take over it executes the fallback method.
+
+
+We need not manually implement this pattern, we have a library inbuilt which is Resilience 4J
+It is newer version netflix hsterix.
+
+health indicator -- status of circuit breaker
+
+Distributed tracing:
+====================
+since we have created services and implemented circuit breaker, we also need to identify the issue through logs to identify whether sevice is down or some other things.
+In a production grade application, it is not possible to check and analyse the logs and identify the issue, we use distribute tracing to track the request from start to finish so that if the request fails at any point, we can know it.
+
+For this we have a trace id, along with span id for each destination like gatway, order service and inventory service and span id is unique for the individual service and trace id is unique for whole request.
+
+For this, we use sleuth project which generates traceid and we have Zipkin to visualise this information.
+
+add the sleuth and zipkin in all the services.
+
+We can identify 
+
+
+Monioringusing Prometheus & Grafana:
+===================================
+Springboot actuator exposes the metrics of the api's of our aplication.
+Prometheus extracts the information by polling springboot actuator and stores in its local memory.
+Similarly Grafana is the visula UI dashboard display of the Prometheus which polls and gets info and displays
+
+actuator prometheus endpoint.
+management.endpoints.web.exposure.include=prometheus. for accessing /actuator and /prometheus
+
+
+Stack:
+=====
+Linear data structure.
+LIF - last in first out like stack of books or cds or stack of plates storage.
+when stack is flow, we get stack overflow error when pushed element.
+when stack is empty and tried to fetch(pop) data, we get stack underflow error.
+
+peek - will get the value but not remove from stack.
+Stack implemented with array and also with linkedlist.
+
+top is last element we added. its value is -1 when empty.
+
+Queue:
+======
+Follows FIFO - FIrst In First Out.
+inserting data - Enque - increase size of queue
+removing data - deque - decrease size of queue.
+peek - give value without emoving.
+
+we have front(f) and rear(r)
+initially r is -1 and f is 0, when adding r increases and adds the element.
+increment the rear when adding elements.
+
+need to use modulus to get the index of queue for circular queue.
+
+ 
+
+Junit:
+======
+InjectMock for the class which is having the method to test
+Mock for creating Mock object and iused along with when and thenReturn
+
+=================================================================================
+
+1. Files in MMM upload page will be cleared.
+2. Partial chargebacks are based on whether on the file basis or on the others as well, because if the same chargeback is uploaded in new sheet
+3. When a chargeback is raised, even the rejected amount is considered in the cumulative amount.
+4. If the chargeback is raised and 
+4. If mail should be sent, then it should be based on vpa and adjtype to be stored in the 
+
+
+
+minimal gui
+sit testing and released with less number of patches
+
+
+//		List<MerchantConfiguration> config = merchantConfigurationRepository
+//				.findByMerchantId(authenticatedUser.getMerchnatId());
+		triplets.add(Triplet.with("aggregatorCode", authenticatedUser.getMerchnatId(), EQUAL));
+		return triplets;
+		
+JRE - provides run time env for running the java applications - supplies core java libraries like java.lang, java.util
+	  just like car  - contains engine(JVM) and other things to drive(run)
+JVM - Java Virtual Machine is a specification that provides a runtime environment  == Engine that runs java programs - interprets bytecode to machine instructions
+	  manages memory via garbage collectors
+	  just like car engine, runs the code but not but does not include the tools to build and modify
+	  It is part of JRE
+JDK - contains JRE + development tools for building, compiling and running applications
+		tools : jar - to build jar
+			    javadoc - to genertae documentation
+				java - to convert .java to .class files
+	When java program runs, the .class files are loaded into memory, .class files contain bytecode.
+	Byte verification will happen which mean the type safety is there or not and are directly referencing to memory
+	interpreter executes bytecode line by line - translates bytecode instruction to action
+	JIT compiler converts recently executed bytecode - like frequently executed method or the method that is called multiple times from different sources
+	into native machine code 
+	When JVM detects method that is called multiple time, it is complied by the JIT compiler resulting in faster execution
+	Bytecode - platform independent instructions
+				
+In simple,  JVM - core execution component in JRE
+			JRE - runtime environment inside JDK
+			JDK - complete package of development and execution
+
+Keywords are certain words which act as a code and they cannot be used as variable names.
+
+If the class is not public, we can have classname and file name as different.
+
+If class A.java has class B.java and in which class B has class C.java  then we will have bytecode as A.class, B.class and C.class.
+
+ASCII - used for representing writen language.
+
+Loops:
+======
+Switch is used to execute the block of code based on the variable which is switched.
+
+for loop - used when we know the number of times the block of code will be executed.
+
+while loop - used when we need to iterate number of statements multiple times but not known the number of iterations in advance.
+
+do while - when nummber of iterations is not known and we need to execute it aleast once, checks the condition after executing the statements.
+
+Class is a logical entity while object is a physical entity which has state and behaviour.
+
+Lierals:
+=======
+int x = 10 - decimal
+int x = 0b101 - binary
+int x = 0x7E - hexadecimal
+ineger supports underscore for knowing number of zeros
+int x - 1_00_000
+int c = 'A' - Here Ascii value of A is assigned to c
+c++ - here c = B
+
+type conversion: achieved using casting
+===============
+assigning one datatype value to another - like asssigning byte value to int
+
+x++ and ++x - post increment and pre increment.
+They behave differently while fetching value like int n = x++, here the value will be same as x, here first fetches the value and then increment happens
+													  n = ++x, here the value will be incremented by 1 and assigned to n, here first increments and fetches the value
+
+stack and heap :
+===============
+every method wuil have is own stack
+Here all are references and objects are created in heap.
+Local variables are part of stack.
+
+Multidimensional array:
+=======================
+Array of arrays is multidimensional array.
+ int[][] arr = new int[3][4] -> array has 3 elements in which each array internally has 4 elements
+ for(int i = 0; i<arr.length ; i++) {
+			for(int j=0 ; j < arr[i].length ; j++) {
+				System.out.print(arr[i][j] + " ");
+			}
+			System.out.println();
+		}
+		
+		for(int[] a : arr) {
+			for(int n : a) {
+				System.out.print(n + " ");
+			}
+			System.out.println();
+		}
+Here we have specified the rows.
+If the internal array has different sizes - it is called jagged arrays.
+
+we need to specify the internal array size manually.
+
+int[][] b = new int[3][];
+		
+		b[0] = new int[3];
+		b[1] = new int[4];
+		b[2] = new int[5];
+		
+		for(int[] x : b) {
+			for(int p : x) {
+				System.out.print(p + " ");
+			}
+			System.out.println();
+		}
+		
+String :
+========
+String is a class and when we have String s = "sai" , in the backend, it creates an object in the heap like using new keyword 
+We have a special area in heap called string constant pool.
+Basically strings are constant and gets stored in constant pool.
+If strings are not used and unreachable, it is cleared.
+
+Strings are immutable - cannot be changed.
+
+If you want mutable - StringBuffer and StringBuilder.
+
+StringBuffer and StringBuilder are used to to create mutable Strings.
+When its object is created, even if the value is empty, it creates a buffer space of 16 bytes
+The difference is that StringBuffer is thread safe and Stringbuilder is not.
+
+for substrings, if we are using like this s.substring(1, 3) , the begin index is taken but not the end index
+for searching, we have s.indexOf("s") or s.indexOf("sai") - this gives the index value of "s"
+replace - replace and replaceAll methods
+replace - replace all occurences
+replaceAll - replace using regex
+
+checking content - ocntains, starts with, endswith
+	s.startsWith("sai")
+	s.startsWith("kiran", 3) -> return true if the string from index 3 is "kiran"
+	s.endsWith("hello")
+	s.startsWith("k")
+	
+trim().replaceAll("\\s*,\\s*" , ",") -> here trailing and lading spaces are removed and then all the spaces before and after the commas are removed.
+
+Strings are stord in string pool and Stringbuffer is stored in heap
+
+All String classes are final classes.
+
+Static keyword
+===============
+static variable is used by all object.
+Static variables can be accessed and used inside static and non static methods directly
+But non static methods variables cannot be accessed inside static method directly
+
+main is static, otherwise we need to create object of it 
+
+static variables are intialised inside the static block, if we initialize in constructor, it will be initialized again and again.
+Static block is executed at the time of class loading by  classloader, so executed even before main method.
+First class is loaded and object is created.
+if we dont create object, class is not loaded.
+Class.forName("Demo"); -> loads the class
+
+Java OOP's:
+===========
+Coupling - dependency of a class on another.
+
+Encapsulation:
+==============
+Binding of data members to it its methods - only the class's methods can access and modify
+
+Singleton Design Pattern - Only object of the class is created and has a global point access
+
+restricting direct access to object's data.
+
+this:
+=====
+to differentiate beween local variable and instance variable.
+
+first priority will be given for the local variable, so we use this to differetniate between local variable and instance variable.
+
+this is a keyword which represents current object -> means the object which is calling this method.
+
+Constructor: default constructor
+============
+constructor is used for for creating object -> it creates blank object.
+When ever an object is created, if we want to have some default values, we can assign them in the constructor.
+
+name is same as that of the class name and no return type and is public.
+
+constructor overloading: parameterised constructor
+========================
+Instead of default values, if we want to have values at the time of object creation itself, we go for constructor overloading.
+
+
+
+Inheritance:
+===========
+a new class can inherit the properties and methods from an existing class.
+
+Computer can be laptop, desktop
+	desktop has motherboard.
+	Laptop has motherboard.
+
+Laptop is a Computer.
+
+Child class can aceess its own methods as well as the parent class features.> Advanced Calculator inherits from Calculator has both the features.
+
+Advanced Calculator is a Calculator.
+
+Similarly VeryAdvCalc extends Adv Calculator -> multi-level inheritance.
+
+So Very Avanced has both Advanced and Calculator Calculator features.
+
+Multiple Inheritance -> Like C class inherits both class A and class B  -> it will not work.
+	it creates ambiguity, what if we call super method or what if both parent classes has same method.
+	
+This and Super:
+===============
+Whether it is a parameterised constructor or default constructor of child class, when object is created, it calls the default constructor of parent class and always has super() method implicitly.
+
+Object class equals and hashcode:
+================================
+Whenever we just print the object, it calls the toString method -> it returns classname + @ + hash, which is a number string.
+equals() -> coming from Object class , it compares using object references.
+String has implemented the equals with value.
+Hashcode is the integer representation of object with all of its variables.
+For objects without overriding, hashcode is calculated based on the object reference value.
+
+
+Upcasting:
+===========
+Object is B but referring to A -> upcasting in inheritance.
+
+
+Wrapper class:
+==============
+Java is not completely object oriented but not primitive variables like int, float, Double.
+But there are certain frameworks which works only on objects like Collections.
+So for that every primitive type, we need class for it.
+For every primitive, we have a class.
+	int x = 5;
+	Integer i = Integer.valueOf(x); -> Boxing
+	Integer j = x; -> Autoboxing.
+	
+	int y = j.intValue() -> Unboxing.
+	int z = j; -> Auto unboxing.
+
+parse is only only used for converting string to other types like parseInt.
+
+
+
+Anonymous object  - object without any reference and we cannot use them again jut like new A();
+
+
+POJO - It is a simple class with private members and public getters and setters without extending any class or implement interface just like RequestBody object.
+Java bean - it is a pojo stricter conventions and has "no arg constructor".
+.
+
+Exception:
+=========
+Compile time error - syntactical error
+Run time error - execution gets stopeed, even if you get runtime errrors, application should not stop
+Logical error - 
+
+try - tries to execute statements in it and continue and if any exception occurs, it executes the catch and continues.
+Exception e prints exception name. -> like ArrayIndexOutOfBoundException
+if we want to handle specific exceptions - we can have multiple catch blocks for it.
+It is always good to handle multiple exceptions.
+Arithematic exception ixtends RuntimeException which extends Exception.
+
+	Exception Hierarchy
+	
+	Object is the supermost class for all classes, Below we have Throwable, below we have Error and Exception.
+	
+	Exception can be handled.
+	Error cannot be handled like Thread dies, 
+	
+	Unchecked exception - complier will not force to handle exception.
+	Checked exception - will force to handle - like asking us to use throws , like reading file
+
+throw - if we want to generate an exception.
+	throw is like calling the catch block.
+	new Excdeption("Something is wrong") - here this message is printing message like divide by zero.
+	
+Custom Exception:
+-----------------
+It can be done by creating the class with that exception name and if you want to print message, pass have super method and pass that message into it.
+
+throws - throws the exception to the mwthod where it is called
+	says I will not handle he exception and throw the exception. - this is called the Ducking the exception.
+
+Taking input from user :
+======================
+system.out.prinln - out is an object of prinstream and is referenced in the System class as static and println is a mehod of Pristream class.
+Similarly there is InpuStream class for reading values.
+
+System.read() gives us the ASCII values.
+So instead of system.read - use BufferedReader.
+
+BufferedReader can take input from file, network etc.
+so whenver you open a file or a network, you need to close it instad of keeping the resource busy. - > bf.close();
+
+Instead of BufferedReader, we can also use Scanner.
+Scanner sc = new Scanner(System.in); -> System.in is the resource from where we are reading our data.
+
+Inner class:
+===========
+Class inside another class
+if class B is dependent only on class A, then class B should be inside the class A.
+
+public class InnerClass {
+	
+	public void show() {
+		System.out.println("in show");
+	}
+	
+	class B{
+		
+		public void config() {
+			System.out.println("In config");
+		}
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		InnerClass obj = new InnerClass();
+		obj.show();
+		
+		InnerClass.B obj1 =  obj.new B();
+		obj1.config();
+
+	}
+
+static can  only be used for Inner class
+
+Anonymous Inner class:
+======================
+class without name
+if we want to to override the method of a class and used only once, we need to go for anonymous inner class as it avoids creating more classes for creating a class and inheriting and overriding.
+
+suppose if class A has method show and if you want to override it only once and use, we go for it.
+A a = new A(); -> just before the semi colon, open the braces and override the mehod show like this.
+A a = new A(){
+	public void show(){
+		we are in anonymous show.
+		}
+};
+
+Abstraction:
+============
+Hiding the implementation details of the system and exposing only the necessary and relevant parts of it
+
+Abstract class cannot be instantiated on its own and can have abstract methods and concrete methods.
+Interface is like a contract where all the methods must be implemented. It contans method signature and static final variables.
+
+With this we can change the implementation of class without actually affecting the classes that are already uing it.
+
+Abstract class can have constructor whle interface cannot as we cannot nstantiate
+
+Abstract class  common base class sharing state.
+
+
+
+Abstract and Anonymous Inner class:
+===================================
+we cannot instantiate abstract class but if we want implement and use only once, we should have anonlymous inner class.
+abstract class A{
+	abstract void show();
+}
+
+public class AbstrAnonymous {
+
+	public static void main(String[] args) {
+		
+		A a = new A() {
+			void show() {
+				System.out.println("in show");
+			}
+		};
+		a.show();
+	}
+	Here A is the Abstract class
+	
+Interface:
+=========
+it is like a class where all methods are public and abstract by default.
+
+we cannot inntantiate interface.
+It just gives directions , design - you need to implement it.
+
+All the variables inside interface are static and final and must be initialised.
+
+Why only static and final because we cannot create object for it - so it does not have its memory, so cannot create non static variable.
+inheritance is there in interface as well using extends.
+
+Difference between abstract class and interface :
+	A class can implement multiple interfaces but cannot extends multiple Abstract clasees.
+	
+
+Enums:
+======
+Enums are named constants.
+Like specific error codes like getting 500
+
+enum is a class and all are objects of that enum.
+
+since is enum is a class but we cannot extend another class.
+
+
+
+
+
+
+
+Annotation:
+===========
+tells the compiler to behave in certain way.
+
+Functional Interface:
+=====================
+Interface with only one abstract method - SAM - Single Abstract Method.
+
+Lambda Expression : 
+===================
+Simplified the anonymous inner class.
+
+The arrow is the lambda.
+
+
+
+try with finally or try with resources:
+=======================================
+we cannot have try without catch but we can have try with finally but here the point is what is the use of try without catching exception.
+finally is someting which executes even whether is occured or not.
+
+for this instead of mentioning finally,create the resources in try itself.
+Its good to use finally as we know what we are closing. but we can also use try with resources for shortcut.
+
+
+	
+Checked exception - IO exception or like reading file 
+
+Memory Management:
+==================
+When Java program is executed, JVM divides the memory into several areas.
+All the class instances(Objects) are stored in Heap and are accessed by all threads.
+
+Each thread in java has its own stack - stores local variables, method calls and references to objects.
+Stack memory is used for method execution and is managed automatically...when a method called, stack is created and when method returned, stack is removed.
+
+System.gc
+
+Garbage collection...Ureachable(not able to be called by reference in another object) objects are cleared 
+
+Standards - use local variables, nullify references, 
+
+
+
+multithreading
+===============
+===============================================================
+Our software runs on OS, Under it we have HW
+inside it, we have CPU, RAM 
+RAM acts as temporary memory for processing.
+CPU executes something.
+
+If multiple softwares want to run at the same time, we need multitasking,
+It is based on time sharing.
+In one software, we need multiple task executing at same time. -> dividing small tasks executing at same time.
+
+Since we have this multithreading, its not that we ourselves create multiple threads, since we use frameworks to build our applications, they only create them.
+
+Here everything goes in a sequence, 
+I want to execute 2 behaviours at same time, here behaviour is a method.
+If we want to make the class as Thread, just extends with thread.
+
+if you want to run 2 behaviours,, we need to start it.
+Since there are many threads to execute, there will be a scheduler which executes particular thread for some particular amount of time.
+
+
+Thread priority and sleep.
+-------------------------
+Since we cannot control scheduler, we can only suggest scheduler to give priority.
+There is a range from 1 to 10 where we can set the priority, where 1 is the lowest and 10 is the highest.
+
+Since java doesnt support multiple inheritance, we cannot extend Thread and another class, so we have Runnable interface which has run()  method.
+Even Thread class implements Runnable interface which has run() method.
+The thing is Runnable interface doesn't have Thread methods, so, in order to access Thread methods, we have 
+Runnable obj = new A();
+Thread t1 = new Thread(obj);
+
+Race condition:
+-------------
+Mutation  you can change something.
+
+Threads + Mutation > where 2 threads operating on same value.
+Thread safe - only one thread access at one time.
+
+join method -> makes the parent thread wait until its thread execution is scomplted.
+
+Race condition  when multiple thread accessing the same variable and changing.
+
+Thread states: - Thread cycle.
+--------------
+New thread created - new state.
+Thread is xecuting but waiting for the scheduler -> Runnable state.
+When thread is running the run() method, it is called running state.
+When thread is running and you to keep it on hold using sleep or wait methods- it is Waiting.
+Thread will come out of waiting state with the help of notify
+	After notify, you go to Runnable state and not Running state.
+
+You should not use stop method as it causes instability in your oftware.
+
+We can make thread from Runnable state to Dead using stop method.
+After ruunning and executing completely, thread is dead.
+===============================================================
+
+multitasking - multiple processes runningsimultaneously
+Earlier even it is one core - because of context switching and time slicing, gives us the feeling of multitasking
+OS scheduler based on the priority performs context switching
+
+multithreading - executing multiple threads of a single process.
+Java multiyhreading capabilities allows us to use maximum resources.
+Java multithreading is managed by jvm and OS
+
+When java program runs, one thread begins to start - which is main thread which is responsible for running main program
+To create a new thread, you can extend a class to a Thread of implement the Runnable interface
+	Create a class and extend the Thread class
+	Implement the run method
+	start method is called t initiate the new thread
+
+All the threads will run in random order
+
+Thread life cycle:
+new - when created not started
+Runnable - after the start method is called, waiting for the cpu ad ready to run
+Running - when cpu gets time, it is executing
+Blocked / Waiting - 
+	When the thread is in sleep, it is called Timed Waiting
+Terminated - after the thread is executed
+
+
+join - waits for the thread to terminate
+
+When a class is already extended, in order to create thread for it, we need to implement Runnable
+
+set priority
+	since in today's world, most of our systems are multi core processors, after setting the priority, it depends on the jvm
+	After the thread is created, its priority must be set before the start of the thread
+	
+
+we can name a hread on our own by writing constructor in our Thread class
+
+interrupt - 
+	t.interrupt() - means interrupt this thread
+	When you interrupt the the thread which is sleepng, it gives interrupt exception
+	
+yield -
+	Thread.yield() - means the the thread is willing to yield its use
+	The choice is left to the Scheduler and the jvm
+	
+user thread - thread that is in use
+			  Thread that is doing the real work
+Daemon threads - the thread runs in backroud like garbage collector
+	In normal condition, after all the threads and the main method is completed, the application is stopped
+	Since daemon thread runs in background, the application does not wait for ts turn to complete and runs only until the user thread is srunning
+	set the daemon to the thread and then start the thread
+	
+Collection:
+===========
+Collection API - it is called concept.  Collction APi is also called Collection Framework.
+Collection - interface
+Collections - class.
+
+storing of multiple values.
+
+Datastructures - the way u fetch data, store data etc.
+
+If you create array, you are creating the structure.
+All these are taken care by a framework.
+
+Collection is the implementation of data structures like creating array, sorting etc.
+All these can be done by array but we use framework.
+
+List and Set:
+--------------
+	List is one of the Collection API. It is sequential.
+	Set is not sorted and also not in sequence.
+	Set does not support index.
+	Treeset is a sorted set.
+		In place of Set and List, we can just keep Collection.
+
+	On top of Collection, we have Iterable, if we go inside, we have iterator which can be used in place of for loop.
+
+	iterator method gives Iterator object.
+	next() method gives next element but gives only one element and we can keep that in loop
+	hasNext() tells whether do we have a next element. 
+
+Map:
+	Like name and mobile number.
+	instead of index value, we have name to it.
+	instead of add, we have put here.
+	we can directly print the map.
+	There is no order in printing.
+	Here keys are unique and it is a set.
+	keys are set and values are list.
+	
+	We also have HashTable, it is almost same.
+	HashTable is synchronised.
+	Even in multithreadd, if u want to use Hashmap, use synchronised.
+	
+Comparable vs Comparator:   - for sorting.
+=========================
+if you want to sort based on your own logic.
+compare 2 values and swap.
+if you return 1, it will swap.
+if you return -1, it will not swap.
+if you return, it 
+
+For lambda expression input parameters, there is no even the need to specify the types of input params.
+
+Why natural sorting is possible for Integer like Collections.sort(nums) without comparator because Integer implements Comparable.
+
+Need for Stream API:
+==================
+Stream is an interface which gives so many methods to perform operations.
+
+List<Integer> nums = Arrays.asList(1,2,3,4,45,9);
+		Stream<Integer> str = list.stream();
+		
+		Here, list.stream(); gives the Stream object.
+		All the values of list is now available in the Stream, so what all the changes to elements are made is done on the stream and not on nums.
+		This is because
+		Once the stream is used, you cannot reuse it.
+		str.forEach(n -> System.out.println(n));
+		str.forEach(n -> System.out.println(n));
+		The above code gives error, it will print first time, while second time, it gives error.
+		
+		
+mpa, filter and reduce:
+=======================
+filter is a predivcate which is a functional interface and has test method which operates and gives boolean result.
+mpa is also a functional interface, which is Function and apply method, which takes value, operates and gives the result.
+ewduce -> takes parameter and other is operation,
+just like adding numbers, in the initial, we assign the sum value to 0,
+Here carryand element is added, result response is carry, so the initial cary is 0
+
+Suppose if you want to perform filter with multiple threads, we have paralleltream.
+do not use parallel stream for sorted as it does not make sense and you can use for others  filter
+how parallel stream works,
+Hashing
+========
+Hashcode is the integer representation of the object and is widely is hashmap to find the bucket
+hashCode() -> returns the hashcode of the object
+equals( -> it is used to resolve collisions when there is same hashcode for different objects
+
+Hashmap stores data in key-value pairs
+hashmap uses an array of buckets to store its entries
+	The hashcode determines the index of the array
+	If 2 keys have same hashcode, then they are stored as linked list
+	
+If there is a collision, the new entry is added in the tree
+
+HashTable - ds not allow null keys and values and synchromised and thread safe
+Hashmap - allows null keys and values, not synchronised and is faster
+
+Hashset internally uses hashmap to store data where the data is the key and dummy object is stored as value
+
+
+Streams
+=======
+If we use Arrays.stream() - even the though the array is primitive or object type, it will work and it is dtected automatically
+
+mapToint is used for object type streams to IntStreams to perform operations like sum, min, max etc 
+
+release notes
+csp
+KT
+share bqr release notes
+
+
+
+FIrst down the eureka server...we can call one service to another service as the eureka registry is already there.
+But when the application is restarted for any service, then the interservice communication is not possible because the service is not yet registered in the eureka server, so it will not be able to call the other service.
+
+
+
+Space and Tim complexity:
+========================
+
+
+
+JS is an engine and each browser has its own engine
+instead of going into broser and executing outside of browser, therre is node js
+node js is just a run time environment to run js outside web browsers
+
+To run js, node is the easy way
+
+decimal like 10 and1.5, both are numbers in js
+string
+number
+boolean
+default value is undefined - wehen declared but not defined
+you cannot put undefined to any variable, it is the js which makes it as undefined when there is no initialization
+if you want to put some empty value, keep it ss null
+
+it is dynamic language as datatype canbe changed on the fly
+
+reference types
+===============
+objects, arrays and functions
+
+LinkedList:
+==========
+Important vocab:
+				Node(data)
+				ref/address
+List of values are linked through addresses
+How do we klnow the firt element of the list -> we have another variable Head which points to first element of the list.
+
+If you want to traverse back > you need doubly linked list.
+
+In java, we have inbuilt class LinkedList 
+List follows index, but linkedlist just jumps between the values.
+
+Lets create our own linkedlist.
+
+
+firsr largest
+second largest
+
+
+4034682943120
+/axis_upi_mfe/src/main/resources/static/js/Ajax/decimal.js
+
+
+javadoc -d docs -sourcepath src/main/java -subpackages com.axis
+
+Why Spring and not Springboot?
+	version conflict between spring core and spring context.
+	Just spring data jpa instead of hibernate orm, hibernate core etc.
+	Based on the parent version, corresponding dependency version is resolved.
+	
+	Avoid additional configuration for creating beans in application-context.xml
+	create datasource, create sessionfactory and transaction management 
+	
+	web.xml - manually keep up the dispatcher servlet.
+	
+	Even after having @configuration, still need to create bean, sesssion factory, transaction manager etc.
+	
+	
+As discused this with himanshu, prasad, Kaustubh etc in the call even before UAT sign off that to whom the notifications emails must go, thos emails will be configured in the tbl_mmm_property.
+Kindly assist them them in this regard. 
+
+
+call by value, call by reference
+string tokenization
+sql innjection
+difference between hibernate and jpa
+war and jar file
+bootjar
+bootjar build and execute.
+what are the day to day activities
+how do you rectify a performance issue.
+how many types of logs - maintaining seperately for db etc.
