@@ -5,6 +5,8 @@
  Kafka
  SQL
  AWS
+ Datatable config
+ floating point precision fix.
 ============================================================================================================
 Abstract class and interface.
 private constructor.
@@ -253,6 +255,57 @@ If there is single datasource in our application, no need of unit name, spring w
 
 Using of @Autowired instead of @PersistenceContext for the EntityManager for using spring applications 
 
+=============================Database=========================
+jdbc:
+DriverManager.getConnection
+for normal queries - use statement and for parameterised query, use preparedStatement
+try (PreparedStatement ps = con.prepareStatement(
+       "INSERT INTO employee(name, dept_id) VALUES (?, ?)")) {
+    ps.setString(1, "Ravi");
+    ps.setLong(2, 10L);
+    ps.executeUpdate();
+	
+executeQuery method for reading and executeUpdate for reading, insertuing and deleting
+ResultSet - for fetching the data.
+
+Hibernate:
+==========
+Session factory creates connections from the hibernate.cfg.xml
+sesssions performn the operations.
+
+hibernate - hibernate.cfg.xml - connections are established from here and if you want another xml file, you need to configure your connections from there
+SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
+
+JPA:
+----
+JPA is the specification of hibernate.
+Here are connections are managed from persistence.xml.
+
+Spring data jpa makes connections and manages them from autoconfiguration with db properties configured in application.properties.
+
+Named query - static query.
+
+TypedQuery - we pass the return type of the query 
+	TypedQuery<Employee> typedQuery = em.createQuery(
+    "SELECT e FROM Employee e WHERE e.salary > :salary", Employee.class);
+	
+Query:
+	Query query = em.createQuery("SELECT e FROM Employee e WHERE e.salary > :salary");
+
+HQL:
+	String hql = "FROM Employee e WHERE e.department = :dept";
+	Query<Employee> query = session.createQuery(hql, Employee.class);
+	query.setParameter("dept", "Finance");
+	List<Employee> employees = query.list();
+	
+JPQL:
+	TypedQuery<Employee> query = em.createQuery(
+    "SELECT e FROM Employee e WHERE e.department = :dept", Employee.class);
+	query.setParameter("dept", "Finance");
+	List<Employee> employees = query.getResultList();
+
+
+
 Different ways of querying data
 	JPQL - single @Query -> @Query("UPDATE PendingMandateReq p SET p.status=:status WHERE p.txnid=:txnid")
 		   SQL works on tables and columns whereas JPQL works on entities and its field names	
@@ -284,6 +337,27 @@ Different ways of querying data
 	Custom queries - @Query with dynamic parameters and complex 	queries
 
 Session for creating dynamic query
+
+
+Global exception Handling in java:
+=================================
+catching all the exceptions globally in a centralized way.
+@ControllerAdvice + @ExceptionHandler.
+ControllerAdvice - Global exception handler class - stops the flow and return standard error response.
+ExceptionHandler - handler of a specific type of exception.
+If the exception is not handled locally, spring intercepts and looks for the ControllerAdvice handles the exception.
+
+
+@ControllerAdvice
+public class GlobalExceptionHandler {
+
+    // Handle specific exception
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<Object> handleResourceNotFound(ResourceNotFoundException ex) {
+        ErrorResponse error = new ErrorResponse("NOT_FOUND", ex.getMessage());
+        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+    }
+	
 
 Batch Processing :
 ==================
@@ -1258,6 +1332,11 @@ Hashset internally uses hashmap to store data where the data is the key and dumm
 
 Streams
 =======
+General stream - sequence of data in form of bytes like a file.
+Stream api provides methods to perform operations on collections.
+Streams can be applied on Arrays and Collections.
+difference between Collection and Collctions
+	Collction is a root interface while Collctions is a class which is used to perform operations on the Collection.
 If we use Arrays.stream() - even the though the array is primitive or object type, it will work and it is detected automatically
 
 mapToint is used for object type streams to IntStreams to perform operations like sum, min, max etc 
