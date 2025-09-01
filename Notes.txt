@@ -257,6 +257,7 @@ Using of @Autowired instead of @PersistenceContext for the EntityManager for usi
 
 =============================Database=========================
 jdbc:
+-----
 DriverManager.getConnection
 for normal queries - use statement and for parameterised query, use preparedStatement
 try (PreparedStatement ps = con.prepareStatement(
@@ -268,21 +269,132 @@ try (PreparedStatement ps = con.prepareStatement(
 executeQuery method for reading and executeUpdate for reading, insertuing and deleting
 ResultSet - for fetching the data.
 
+JdbcTemplate:
+-------------
+can configure the connection like this JdbcTemplate jdbctemplate = new JdbcTemplate(Datasourcr);
+Now Autowire this to have jdbcTemplate to perform db operations.
+
+queryForObject - to fetching data
+query - list.
+update - insert, update and delete.
+
+
 Hibernate:
 ==========
+ORM framework that maps the java classes to the DB tables with the help of xml configurations or annotations.
+
 Session factory creates connections from the hibernate.cfg.xml
 sesssions performn the operations.
 
 hibernate - hibernate.cfg.xml - connections are established from here and if you want another xml file, you need to configure your connections from there
 SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
 
+While sessionfactory has to manually manage the tranactions while the entitymanager is automatically managed.
 JPA:
 ----
 JPA is the specification of hibernate.
 Here are connections are managed from persistence.xml.
 
-Spring data jpa makes connections and manages them from autoconfiguration with db properties configured in application.properties.
+@persistenceContext is used to inject entityManager to perform db operations.
+persistence unit is the package for the entityManager to perform db operations.
 
+Spring data jpa:
+---------------- 
+makes connections and manages them from autoconfiguration with db properties configured in application.properties.
+Builtin paging and sorting.
+
+@Query is used for custom queries.
+@Query with @Modifying is used to perfrom insert and update operations on the db tables.
+
+CrudRepository
+	basic crud operations like save(T), findById(ID), findAll(), delete(T),
+PagingAndSotingRepository
+	findAll(Pageable pageable) (returns Paged<P>) and findAll(Sort sort)
+JpaRepository
+	all the methods of above plus flush(), saveAndFlush(), deleteAllInBatch(), etc.
+	
+Pageable pageable = PageRequest.of(0, 10, Sort.by("name").ascending().and(Sort.by("email").descending()));
+Page<User> page = userRepository.findAll(pageable);
+page.getContent().forEach(user -> System.out.println(user.getName()));
+System.out.println("Total Pages: " + page.getTotalPages());
+
+Dynamic queries:
+	Criteria API with Restrictions
+	CriteriaQuery with Predicates.
+	
+	Restrictoisn - Hibernate specific conditions.
+	Predicate - jpa specific conditions.
+	Root - entity being queried.
+	CriteriaQuery - the query itself.
+	
+	
+		import javax.persistence.*;
+import javax.persistence.criteria.*;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    private String name;
+    private String email;
+    private int age;
+    // Getters, setters, constructors
+}
+
+public class CriteriaExample {
+    public static List<User> findUsers(EntityManager em, String nameFilter, String emailFilter, Integer minAge) {
+        // Create CriteriaBuilder
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        // Create CriteriaQuery
+        CriteriaQuery<User> query = cb.createQuery(User.class);
+        // Define the Root (represents User entity)
+        Root<User> root = query.from(User.class);
+
+        // Build dynamic predicates
+        List<Predicate> predicates = new ArrayList<>();
+        
+        // Add name filter if provided
+        if (nameFilter != null && !nameFilter.isEmpty()) {
+            predicates.add(cb.equal(root.get("name"), nameFilter));
+        }
+        
+        // Add email filter if provided
+        if (emailFilter != null && !emailFilter.isEmpty()) {
+            predicates.add(cb.like(root.get("email"), "%" + emailFilter + "%"));
+        }
+        
+        // Add age filter if provided
+        if (minAge != null) {
+            predicates.add(cb.greaterThan(root.get("age"), minAge));
+        }
+
+        // Combine predicates with AND (if any)
+        if (!predicates.isEmpty()) {
+            query.where(cb.and(predicates.toArray(new Predicate[0])));
+        }
+
+        // Execute query
+        TypedQuery<User> typedQuery = em.createQuery(query);
+        return typedQuery.getResultList();
+    }
+
+    public static void main(String[] args) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("testPU");
+        EntityManager em = emf.createEntityManager();
+
+        // Find users with name="John" and age > 25
+        List<User> users = findUsers(em, "John", null, 25);
+        users.forEach(u -> System.out.println(u.getName() + ", " + u.getAge()));
+
+        em.close();
+        emf.close();
+    }
+}
+	
+	
 Named query - static query.
 
 TypedQuery - we pass the return type of the query 
@@ -426,14 +538,14 @@ Microservices architecture - a software architectural style where applications a
 							 a network. 
 Here for synchronous communication - 
 		 Asynchronous communication - ActivMQ, Rabbit MQ, Kafka 
-Even driven architecture is nothing but sebding events to message brokers whenever an important event occurs
-Spring Cloud config/config server - To configure configuration properties without any restart. ocenralize configurations
+Event driven architecture is nothing but sending events to message brokers whenever an important event occurs
+Spring Cloud config/config server - To configure configuration properties without any restart. ocenralize configurations.
 Spring cloud gateway / Zuul gateway - here based on the api endpoints, the api is routed to that particular service, here spring security will 
 									  be there and can also configure authentication.
 									  
 									  It has to register itself as eureka client.
 									  
-									  Inteface and single entry poit for for all the services
+									  Inteface and single entry point for for all the services
 									  It locates for services with the help of eureka server as gateway is registerd in eureka server.
 									  
 									  
@@ -441,9 +553,10 @@ Service discovery(Eureka Server) - All the services are registered here and each
 								   Insteading of hardcoding the urls that our service calls to another service, we configure them in eureka server.	
 								   All our microservices are eureka clients are registered in the eureka server.
 								   Eureka server is a dashboard which shows all the registered eureka clients.
-								   Every eureka server itsekf is a eureka client, so always eureka.client.registerwitheurekafalse,
+								   Every eureka server itself is a eureka client, so always eureka.client.registerwitheurekafalse,
 																							eureka.client.fetchregistry=false
-							
+								   Our service ip and port are aleady registered in eureka server at the time of startup, we can just call other service with application name in the url
+								   
 									If we have multiple spring clound dependency, just keep the version in the properties so all the spring cloud versions take the same version.
 			Even if the eureka client did not add any properties to register with eureka server, but still it registers if the eureka server is running in default port 8761, or else we need to add properties to register the eureka client in the eureka server.
 			
@@ -455,7 +568,7 @@ Service discovery(Eureka Server) - All the services are registered here and each
 		 To make synchronous communication
 		 
 		 
-	Suppose when a eureka client discovers a eureka server before calling another service, the cservice tores the eureka server info in cache and always don't call the eureka server in further calls to another service.
+	Suppose when a eureka client discovers a eureka server before calling another service, the service stores the eureka server info in cache and always don't call the eureka server in further calls to another service.
 	java -jar <applicationName.jar>
 	java -Dserver.port=8081-jar appName.jar
 	
