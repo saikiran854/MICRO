@@ -580,7 +580,7 @@ Sleuth & Zipkin - Here logs are generated and distributed across different servi
 asycnronous communication - fire and forget.
 Web client is coming from spring web flux project
 
-Here we are calling our services directly through web client but in real time in cloud environment, ip's are dynamic and pors as well.
+Here we are calling our services directly through web client but in real time in cloud environment, ip's are dynamic and ports as well.
 In reaal time, each service runs on different ports and have different ip's as well and also there will be in multiple servers for a single service
 In order to know for our order service to which inventory service do we need to call, we have service discovery.
 
@@ -640,11 +640,11 @@ For accessing each of the services, different urls are there which will all be r
 For this, we need to configure the gateway rules.
 
 Along with this, API gateway also take care of
-	Roting
+	Routing
 	Authentication
 	Security
 	Load balancing
-	SSL termination - which will be terminated at the start when the reques reaches the API gateway and all the internal communication happens through http
+	SSL termination - which will be terminated at the start when the request reaches the API gateway and all the internal communication happens through http
 	
 	Add logging properties in api gateway in order to know what is happening when the request is made
 
@@ -658,7 +658,7 @@ Along with this, API gateway also take care of
 		Route - which is the basic block
 		Predicate - defines the matching criterias
 		Filter - modify the request and response - like adding headers etc
-		lb:xxx -> lod balance the request to the discovery server 
+		lb:xxx -> load balance the request to the discovery server 
 			If we are seeing only he plain html, it means we are seeing the server and not for static web resources
 	Since we can have multiple routes, we define it like array
 	we can also have different kinds of predicates
@@ -674,9 +674,9 @@ Circuit breaker is a set of states that our application will maintain.
 
 It can throw some error execute some method.
 
-When it is in open and just starts to accept the equests, the state will go into Half open.
+When it is in open and just starts to accept the requests, the state will go into Half open.
 
-Since timeout is for asynchronous communication, so we have t change the returnype to a CompleteableFuture.
+Since timeout is for asynchronous communication, so we have to change the returnype to a CompleteableFuture.
 
 In the initial,circuit breaker pattern status is closed and when this kind of situations occur...circuit breaker status is open.
 
@@ -694,7 +694,7 @@ health indicator -- status of circuit breaker
 Distributed tracing:
 ====================
 since we have created services and implemented circuit breaker, we also need to identify the issue through logs to identify whether sevice is down or some other things.
-In a production grade application, it is not possible to check and analyse the logs and identify the issue, we use distribute tracing to track the request from start to finish so that if the request fails at any point, we can know it.
+In a production grade application, it is not possible to check and analyse the logs and identify the issue, we use distributed tracing to track the request from start to finish so that if the request fails at any point, we can know it.
 
 For this we have a trace id, along with span id for each destination like gatway, order service and inventory service and span id is unique for the individual service and trace id is unique for whole request.
 
@@ -709,12 +709,25 @@ Monioringusing Prometheus & Grafana:
 ===================================
 Springboot actuator exposes the metrics of the api's of our aplication.
 Prometheus extracts the information by polling springboot actuator and stores in its local memory.
-Similarly Grafana is the visula UI dashboard display of the Prometheus which polls and gets info and displays
+Similarly Grafana is the vislua UI dashboard display of the Prometheus which polls and gets info and displays
 
 actuator prometheus endpoint.
 management.endpoints.web.exposure.include=prometheus. for accessing /actuator and /prometheus
 
 
+SPringboot Actuator:
+--------------------
+exposes the operational information about the application.like health, info etc
+By default, all the endpoints are exposed, we need to configure certain endpoints as per our use.
+
+We can also refresh the beans with new configurations. with @RefreshScope on the bean like configuring db with new reources.
+We can also update the application.properties file but not directly on the disk but on the Environmrnt object.
+
+By enabling the loggers endpoint for the actuator, we can also debug an api in the production environment.
+/httptrace endpoint monitors the http request and check what headers are going and all.
+
+The url : http://your-app:8080/actuator/loggers/com.example.api
+	specifies the loggers identified by particular package or class names.
 Stack:
 =====
 Linear data structure.
@@ -1184,18 +1197,6 @@ Annotation:
 ===========
 tells the compiler to behave in certain way.
 
-Functional Interface:
-=====================
-Interface with only one abstract method - SAM - Single Abstract Method.
-
-Lambda Expression : 
-===================
-Simplified the anonymous inner class.
-
-The arrow is the lambda.
-
-Lambda expressions are used to implement the functional interfaces.
-
 
 try with finally or try with resources:
 =======================================
@@ -1337,6 +1338,9 @@ Daemon threads - the thread runs in backroud like garbage collector
 	
 Collection:
 ===========
+Collection framework is used to store the group of objects together and in that we have Collection and Map
+Collections is a class which is used to perform operations on the Collection.
+Iterable is the root interface of the Collection.
 Collection API - it is called concept.  Collction APi is also called Collection Framework.
 Collection - interface
 Collections - class.
@@ -1365,7 +1369,14 @@ List and Set:
 	next() method gives next element but gives only one element and we can keep that in loop
 	hasNext() tells whether do we have a next element. 
 
+Inthis we have arraylist and linkedlist, where both of them maintain the insertion order whereas the in the LinkedList, it is easy to add or remove element easily while in arraylist, we need shifting.
+Both the arraylist and LinkedList allows null values.
+
+Hashset works on the principle of hashing and allows only one null value.
+Treeset inserts the elements in the ascending order.
+
 Map:
+	Map is not part of Collection but from Collection framework which 
 	Like name and mobile number.
 	instead of index value, we have name to it.
 	instead of add, we have put here.
@@ -1378,13 +1389,31 @@ Map:
 	HashTable is synchronised.
 	Even in multithreadd, if u want to use Hashmap, use synchronised.
 	
+Hashmap allows only one null key and multiple null values and does not maintain order.
+LinkedHashMap is same as hashmap but maintains order.
+Treemap does not allow null keys but allows multiple null values.
+Both HashTable and ConcurrentHashmap does not allow null keys and null values.
+HashTable blocks the entire map for synchronization whereas ConcurrentHashmap does not block entire map.
+	
 Comparable vs Comparator:   - for sorting.
 =========================
 if you want to sort based on your own logic.
 compare 2 values and swap.
 if you return 1, it will swap.
 if you return -1, it will not swap.
-if you return, it 
+if you return 0, no change 
+
+Functional Interface:
+=====================
+Interface with only one abstract method - SAM - Single Abstract Method.
+
+Lambda Expression : 
+===================
+Simplified the anonymous inner class.
+
+The arrow is the lambda.
+
+Lambda expressions are used to implement the functional interfaces.
 
 For lambda expression input parameters, there is no even the need to specify the types of input params.
 
@@ -1408,12 +1437,14 @@ List<Integer> nums = Arrays.asList(1,2,3,4,45,9);
 		
 mpa, filter and reduce:
 =======================
-filter is a predivcate which is a functional interface and has test method which operates and gives boolean result.
-mpa is also a functional interface, which is Function and apply method, which takes value, operates and gives the result.
-ewduce -> takes parameter and other is operation,
+filter is a predicate which is a functional interface and has test method which operates and gives boolean result.
+map is also a functional interface, which is Function and apply method, which takes value, operates and gives the result.
+ewduce - sequential allocation -> takes parameter and other is operation,
 just like adding numbers, in the initial, we assign the sum value to 0,
 Here carryand element is added, result response is carry, so the initial cary is 0
-
+	In reduce, without identity the first element from the stream just stays and waits for the second element before performing any operation.
+	
+sort requires whole dataset
 Suppose if you want to perform filter with multiple threads, we have paralleltream.
 do not use parallel stream for sorted as it does not make sense and you can use for others  filter
 how parallel stream works,
@@ -1423,6 +1454,14 @@ how parallel stream works,
 	Each chunk is processed seperately and all of them are merged globaly and sorted order.
 	In sorting, all the data is stored first in an array buffer and then sorting happens.
 	Since sorting is a terminal operation, it doesn't start processing data immediately. First it collects all the data and then processes using Timsort - MergeSort + QuickSort.
+	
+For working on primitive types with streams, we have IntStream,LongStream etc.
+only for the primitive types, we have functions like min(), max, sum, avg, count, etc
+
+If you want to work on primiive types, we have IntStrea, LongStream, DoubleStream
+For sort, we have Array.sort() just like Collections.sort() but we don't have comparator for primitive types.
+If you want reverse order for primitive types, we need to convert to 
+mapToInt -> converts from object type to primitive types.
 	
 Hashing
 ========
