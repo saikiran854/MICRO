@@ -298,6 +298,10 @@ Here are connections are managed from persistence.xml.
 @persistenceContext is used to inject entityManager to perform db operations.
 persistence unit is the package for the entityManager to perform db operations.
 
+Vendor neutral
+You can swap Hibernate with EclipseLink or OpenJPA with minimal changes.
+hibernate - specific implementation of the jpa.
+jpa - specification of the jpa
 Spring data jpa:
 ---------------- 
 makes connections and manages them from autoconfiguration with db properties configured in application.properties.
@@ -1273,7 +1277,7 @@ Race condition  when multiple thread accessing the same variable and changing.
 Thread states: - Thread cycle.
 --------------
 New thread created - new state.
-Thread is xecuting but waiting for the scheduler -> Runnable state.
+Thread is executing but waiting for the scheduler -> Runnable state.
 When thread is running the run() method, it is called running state.
 When thread is running and you to keep it on hold using sleep or wait methods- it is Waiting.
 Thread will come out of waiting state with the help of notify
@@ -1333,7 +1337,7 @@ user thread - thread that is in use
 			  Thread that is doing the real work
 Daemon threads - the thread runs in backroud like garbage collector
 	In normal condition, after all the threads and the main method is completed, the application is stopped
-	Since daemon thread runs in background, the application does not wait for ts turn to complete and runs only until the user thread is srunning
+	Since daemon thread runs in background, the application does not wait for its turn to complete and runs only until the user thread is srunning
 	set the daemon to the thread and then start the thread
 	
 Collection:
