@@ -1589,3 +1589,32 @@ bootjar build and execute.
 what are the day to day activities
 how do you rectify a performance issue.
 how many types of logs - maintaining seperately for db etc.
+
+Consumer is like a kind and Producer is like a candy factory and consumer is a kid and consumes the candy.
+After the consumer consumes the message, the message is not deleted and it is stored for a set of time or forever based on the configuration
+Consumer also keeps the track of message what it consumed using an offset.
+Consumers can also process messages in batch.
+
+Each consumer of a particular consumer group consume messages of same topic?
+A group of consumers that subscribe to the same topic and divide work automatically
+
+Each consumer consumes from only a particular partition?
+If consumers are added or removed, the messages are reassigned automatically by the kafka
+
+if one consumer reads a message, the whole groupncommits the offset.
+
+Consumer reads the message from the broker
+All the brokers together from a cluster
+The kafka server has the topics and messages are stored here
+
+producers sends through broker and consumer also consumes by pulling the messages from the server through broker?
+
+Each message includes metadata which contain topic name and also the partition of the topic
+
+If processing fails, you can retry
+
+All the consumers in the group are tied to a topic.
+
+The group co-ordinator assigns the partitions to the consumers with strategies like Range or RoundRobin
+
+Consumer polls the partitions for records
